@@ -21,11 +21,13 @@ let UF = 0;
 
 // Creación de constructor de Entregables
 class Entregable {
-    constructor(tipo, descripcion, hp, indice) {
+    constructor(tipo, descripcion, hp, indice, tarifa, total) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.hp = hp;
         this.indice = indice;
+        this.tarifa = tarifa;
+        this.total = total;
     }
 }
 
@@ -195,7 +197,7 @@ document.getElementById("formularioEntregables").addEventListener("submit", func
     }
     
     // Crear un nuevo objeto
-    const objetoEntregables = new Entregable(tipo, entregable, hp, indice2);
+    const objetoEntregables = new Entregable(tipo, entregable, hp, indice2, 0, 0);
     temp.push(objetoEntregables);
     
     // Agrega el entregable e incializa el formulario
