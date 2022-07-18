@@ -16,6 +16,7 @@ let suma = 0;
 let bandera = 1;
 let bandera2 = 0;
 let idBD = 0;
+let UF = 0;
 
 
 // Creación de constructor de Entregables
@@ -33,6 +34,8 @@ fetch('https://mindicador.cl/api').then(function(response) {
     return response.json();
 }).then(function(dailyIndicators) {
     document.getElementById("UF").innerHTML = "$ " + dailyIndicators.uf.valor + " CLP";
+    UF = Number(dailyIndicators.uf.valor);
+    guardarLocal("valorUF", UF);
 }).catch(function(error) {
     console.log('Requestfailed', error);
 });

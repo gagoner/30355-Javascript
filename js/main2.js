@@ -16,6 +16,7 @@ let suma = 0;
 let bandera = 1;
 let bandera2 = 0;
 let idBD = 0;
+let UF = 0;
 
 // Creación de constructor de Entregables
 class Entregable {
@@ -31,7 +32,8 @@ class Entregable {
 // Recuperación de Bases de Datos de Entregable almacenados
 BD = JSON.parse(localStorage.getItem("bdEntregables"));
 idBD = JSON.parse(localStorage.getItem("idEntregables"));
-idBD = Number(idBD);
+UF = JSON.parse(localStorage.getItem("valorUF"));
+idBD = Number(UF);
 
 // Operador Ternario
 let verificacion = BD !== null ? BD.forEach(desestructurarBD) : bandera = 0;
@@ -45,7 +47,7 @@ function desestructurarBD(value, index, array) {
     <td>${value.descripcion}</td>
     <td class="text-center">${value.hp}</td>
     <td class="text-center"><input class="claseUFHP" type="number" min="0" max="999" step="0.01" id="UFHP${value.indice}" placeholder="0">${value.indice}</td>
-    <td class="text-center" id="stCLP${value.indice}" >${Number(UF) * Number(value.indice)}</td>
+    <td class="text-center" id="stCLP${value.indice}" >${UF * Number(value.indice)}</td>
     `;
     listaEntregables.appendChild(elemento);
 
