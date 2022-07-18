@@ -17,15 +17,6 @@ let bandera = 1;
 let bandera2 = 0;
 let idBD = 0;
 
-// Fetch de valor UF
-fetch('https://mindicador.cl/api').then(function(response) {
-    return response.json();
-}).then(function(dailyIndicators) {
-    document.getElementById("UF").innerHTML = "$ " + dailyIndicators.uf.valor + " CLP";
-}).catch(function(error) {
-    console.log('Requestfailed', error);
-});
-
 // Creación de constructor de Entregables
 class Entregable {
     constructor(tipo, descripcion, hp, indice) {
@@ -81,7 +72,7 @@ function sumaHP(array) {
 
 class UI {
     agregarEntregable(entregables, bandera) {
-        const listaEntregables = document.getElementById("listadoEntregables");
+        const listaEntregables = document.getElementById("valorizacionEntregables");
         if (bandera == 1) {
                 listaEntregables.removeChild(listaEntregables.lastChild);
         }
