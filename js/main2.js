@@ -55,7 +55,7 @@ function desestructurarBD(value, index, array) {
     }
 }
 
-// Suma de HP
+// Suma de valor de Entregables
 function sumaCLP(array) {
     let sum = 0;
     for (let index = 0; index < array.length; index++) {
@@ -66,16 +66,7 @@ function sumaCLP(array) {
 }
 
 // Interacción con el usuario
-
 class UI {
-    agregarEntregable(entregables, bandera) {
-        const listaEntregables = document.getElementById("valorizacionEntregables");
-        if (bandera == 1) {
-                listaEntregables.removeChild(listaEntregables.lastChild);
-        }
-        entregables.forEach(desestructurarBD);
-        temp.splice(0,1);
-    }
 
     // Multiplicar entregable de forma individual
     multiplicarEntregable(elemento) {
