@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch en tu proyecto</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <nav class="navbar bg-light d-flex flex-column">
+        <h1 class=""> Javascript 30355 - CoderHouse </h1>
+        <h2 id="saludo" class="h3 text-wrap"></h2>
+    </nav>
+        <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item"><a class="nav-link active" href="./index.html">Ingreso de entregables</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#">Valorización de los entregables</a></li>
+        </ul>
+    <!-- Cuerpo principal de la web -->
+    <main class="container">
+        <!-- Ingreso de entregables de forma individual -->
+        <div id="formulario" class="row pt-3">
+            <!-- Listado de entregables -->
+            <div class="col-md-12 card mt-3">
+                <table class="table table-sm table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tipo entregable</th>
+                            <th class="text-center">Descripci&oacute;n</th>
+                            <th class="text-center">HP</th>
+                            <th class="text-center">Tarifa en UF/HP</th>
+                            <th class="text-center"><strong>Subtotal CLP</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody id="valorizacionEntregables" class="text-dark">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/main2.js"></script>
+</body>
+</html>

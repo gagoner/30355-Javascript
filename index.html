@@ -4,13 +4,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMULADOR INTERACTIVO</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <title>Fetch en tu proyecto</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <body>
-    <h1> Javascript 30355 - CoderHouse </h1>
-    <h2> Desaf&iacute;o (entrega 2)</h2>
-    <!-- Llamda de archivo de Script JS -->
+    <nav class="navbar bg-light d-flex flex-column">
+        <h1 class=""> Javascript 30355 - CoderHouse </h1>
+        <h2 id="saludo" class="h3 text-wrap"></h2>
+    </nav>
+        <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item"><a class="nav-link disabled" href="#">Ingreso de entregables</a></li>
+            <li class="nav-item"><a class="nav-link active" href="./valorizacion.html">Valorización de los entregables</a></li>
+        </ul>
+    <!-- Cuerpo principal de la web -->
+    <main class="container">
+        <span class="col-md-3 badge rounded-pill bg-info">Valor unidad de Fomento (U.F.):&nbsp;&nbsp;
+            <span id="UF" class="badge bg-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+        </span>
+        <!-- Ingreso de entregables de forma individual -->
+        <div id="formulario" class="row pt-3">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-wrap"> Ingrese los entregables y las horas personas (HP) correspondientes</h4>
+                    </div>
+                    <form id="formularioEntregables" class="card-body">
+                        <div class="form-group">
+                            <label for="tipoEntregable" class="form-label">Tipo:&nbsp;&nbsp;</label>
+                            <select id="tipoEntregable" name="tipoEntregable" class="btn btn-outline-secondary btn-sm">
+                                <option value="Actividad">Actividad</option>
+                                <option value="Documento">Documento</option>
+                                <option value="Plano">Plano</option>
+                                <option value="Reuni&oacute;n">Reuni&oacute;n</option>
+                            </select>
+                            <div class="form-group">
+                                <span>Descripci&oacute;n:&nbsp;&nbsp;</span>
+                                <input type="text" placeholder="Descripci&oacute;n del entregable" size="25" id="entregable">
+                                <span>
+                                    &nbsp;:&nbsp;
+                                </span>
+                                <input type="number" size="5" min="0" max="999" step="0.25" id="HP">
+                                <span>
+                                    HP
+                                </span>
+                            </div>
+                        </div>
+                        <br>
+                        <div  class="btn-group d-flex justify-content-center" role="group">
+                            <input type="submit" id="botonHP" value="Guardar" class="btn btn-outline-secondary btn-sm active">
+                            <input type="reset" id="botonLimpiar" value="Borrar" class="btn btn-outline-secondary btn-sm">
+                            <input type="reset" id="botonTodo" value="Borrar Todo" class="btn btn-outline-danger btn-sm">
+                        </div>
+    
+                    </form>
+                </div>
+                <!-- Filtrado de entregables --> 
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="text-wrap"> Filtre los entregables y las HP correspondientes</h6>
+                    </div>
+                    <form id="formularioFiltro" class="card-body">
+                        <table class="table table-sm table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        <label for="tipoFiltro" class="form-label">Tipo:&nbsp;&nbsp;</label>
+                                        <select id="tipoFiltro" name="tipoFiltro" class="btn btn-outline-secondary btn-sm">
+                                            <option value="Vacio"></option>
+                                            <option value="Actividad">Actividad</option>
+                                            <option value="Documento">Documento</option>
+                                            <option value="Plano">Plano</option>
+                                            <option value="Reuni&oacute;n">Reuni&oacute;n</option>
+                                        </select>
+                                    </th>
+                                    <th class="text-center">Descripci&oacute;n</th>
+                                    <th class="text-center">Horas Personas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filtradoEntregables" class="text-dark">
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <!-- Listado de entregables -->
+            <div class="col-md-6 card">
+                <table class="table table-sm table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Descripci&oacute;n</th>
+                            <th class="text-center">Horas Personas</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="listadoEntregables" class="text-dark">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
     <script src="./js/main.js"></script>
+    <!-- Toastify Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </body>
 </html>
+
+<!--     <p>
+    </p>
+    <p id="parrafo1"></p>
+    <p id="parrafo2"></p>
+    <table id="tablaEntregables">
+        <tr>
+            <td>Row1 cell1</td>
+            <td>Row1 cell2</td>
+        </tr>
+    </table>
+
+    <p id="parrafo3"></p>
+    <p id="parrafo4"></p>
+    <ol id="parrafo5"></ol>
+    <p id="parrafo6"></p> -->
