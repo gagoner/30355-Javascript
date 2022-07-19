@@ -6,7 +6,7 @@ const saludos = ["Hola", "Bienvenido", "Buen día", "Saludos", "Que gusto verle"
 let saludo = "¡" + saludos[Math.floor(Math.random()*saludos.length)] + "!";
 
 // Salida del por html
-document.getElementById("saludo").innerHTML = saludo + "Esta es mi Entrega Final.";
+document.getElementById("saludo").innerHTML = saludo + " Esta es mi Entrega Final.";
 
 // Inicialización de variables
 const baseDatos = [];
@@ -17,6 +17,7 @@ let bandera = 1;
 let bandera2 = 0;
 let idBD = 0;
 let UF = 0;
+let iva = 0.19; // Impuesto de valor agregado
 
 // Recuperación de Bases de Datos de Entregable almacenados
 BD = JSON.parse(localStorage.getItem("bdEntregables"));
@@ -41,7 +42,7 @@ function desestructurarBD(value, index, array) {
     <td>${value.descripcion}</td>
     <td class="text-center" id="HP${value.indice}">${value.hp}</td>
     <td class="text-center"><input class="claseUFHP" type="number" min="0" max="999" step="0.01" id="UFHP${value.indice}" placeholder="0" name="tarifa" value=${value.tarifa}></td>
-    <td class="text-center" id="CLP${value.indice}" >${resultado = value.tarifa == 0 ? "-" : new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 10 }).format(value.total)}</td>
+    <td class="text-center" id="CLP${value.indice}" >${resultado = value.tarifa == 0 ? "-" :  "$ " + new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 10 }).format(value.total)}</td>
     `;
     listaEntregables.appendChild(elemento);
 
@@ -49,8 +50,17 @@ function desestructurarBD(value, index, array) {
     if (index == array.length - 1) {
         const listaEntregables = document.getElementById("valorizacionEntregables");
         const elemento2 = document.createElement("tr");
-        elemento2.innerHTML = "<td></td><td></td><td></td><td class=\"text-end\"><strong>TOTAL CLP:</strong></td><td class=\"text-center\"><strong id=\"suma\">" + sumaCLP(BD) + "</strong></td>";
+        let totalCLP = new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 10 }).format(sumaCLP(BD));
+        elemento2.innerHTML = "<td></td><td></td><td></td><td class=\"text-end\"><strong>Total Neto CLP:</strong></td><td class=\"text-center\"><strong id=\"suma\">" + "$ " + totalCLP + "</strong></td>";
         listaEntregables.appendChild(elemento2);
+        const elemento3 = document.createElement("tr");
+        let varIVA = new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 8 }).format(iva * sumaCLP(BD));
+        elemento3.innerHTML = "<td></td><td></td><td></td><td class=\"text-end\"><strong>I.V.A.:</strong></td><td class=\"text-center\"><strong id=\"iva\">" + "$ " + varIVA + "</strong></td>";
+        listaEntregables.appendChild(elemento3);
+        const elemento4 = document.createElement("tr");
+        let varTotal = new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 8 }).format((1+iva) * sumaCLP(BD));
+        elemento4.innerHTML = "<td></td><td></td><td></td><td class=\"text-end\"><strong>GRAND TOTAL:</strong></td><td class=\"text-center\"><strong id=\"grandTotal\">" + "$ " + varTotal + "</strong></td>";
+        listaEntregables.appendChild(elemento4);
         bandera = 1;
     }
 }
@@ -60,9 +70,8 @@ function sumaCLP(array) {
     let sum = 0;
     for (let index = 0; index < array.length; index++) {
         sum += Number(array[index].total);
-        console.log(array[index].total);
     }
-    return new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 10 }).format(sum);
+    return sum;
 }
 
 // Interacción con el usuario
@@ -88,7 +97,9 @@ class UI {
                     break;
                 }
             }
-            document.getElementById("suma").innerText = sumaCLP(BD);
+            document.getElementById("suma").innerText = "$ " +new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 10 }).format(sumaCLP(BD));
+            document.getElementById("iva").innerText = "$ " + new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 8 }).format(iva * sumaCLP(BD));            
+            document.getElementById("grandTotal").innerText = "$ " + new Intl.NumberFormat('es-CL', { maximumSignificantDigits: 8 }).format((1 + iva) * sumaCLP(BD));
             guardarLocal("bdEntregables", JSON.stringify(BD));
         }
     }
@@ -100,4 +111,9 @@ class UI {
 document.getElementById("formulario").addEventListener("change", (e) => {
     const ui = new UI();
     ui.multiplicarEntregable(e.target);
+});
+
+document.getElementById("imprimir").addEventListener("click", (e) => {
+    const ui = new UI();
+    window.print();
 });

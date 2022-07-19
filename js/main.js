@@ -6,7 +6,7 @@ const saludos = ["Hola", "Bienvenido", "Buen día", "Saludos", "Que gusto verle"
 let saludo = "¡" + saludos[Math.floor(Math.random()*saludos.length)] + "!";
 
 // Salida del por html
-document.getElementById("saludo").innerHTML = saludo + "Esta es mi Entrega Final.";
+document.getElementById("saludo").innerHTML = saludo + " Esta es mi Entrega Final.";
 
 // Inicialización de variables
 const baseDatos = [];

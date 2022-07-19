@@ -18,15 +18,17 @@
             <li class="nav-item"><a class="nav-link disabled" href="#">Valorización de los entregables</a></li>
         </ul>
     <!-- Cuerpo principal de la web -->
-    <main class="container">
-        <span class="col-md-3 badge rounded-pill bg-info">Valor Unidad de Fomento (U.F.):&nbsp;&nbsp;
-            <span id="UF" class="badge bg-warning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span>
-        </span>
+    <main class="container pt-2">
+        <div>
+            <button class="badge rounded-pill bg-info">Valor Unidad de Fomento (U.F.):&nbsp;&nbsp;<span id="UF"></span>
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="imprimir" class="badge rounded-pill bg-info">Imprimir cotización
+            </button>
+        </div>
         <!-- Ingreso de entregables de forma individual -->
         <div id="formulario" class="row pt-3">
             <!-- Listado de entregables -->
-            <div class="col-md-12 card mt-3">
+            <div class="card mt-3">
                 <table class="table table-sm table-striped align-middle">
                     <thead>
                         <tr>
@@ -43,7 +45,6 @@
             </div>
         </div>
     </main>
-
     <script src="./js/main2.js"></script>
 </body>
 </html>
