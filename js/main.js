@@ -8,6 +8,9 @@ let saludo = "¡" + saludos[Math.floor(Math.random()*saludos.length)] + "!";
 // Salida del por html
 document.getElementById("saludo").innerHTML = saludo + " Esta es mi Entrega Final.";
 
+// Función guardar la base de datos de forma local
+guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor)};
+
 // Inicialización de variables
 const baseDatos = [];
 const temp = [];
@@ -41,10 +44,8 @@ fetch('https://mindicador.cl/api').then(function(response) {
     guardarLocal("valorUF", UF);
 }).catch(function(error) {
     console.log('Requestfailed', error);
+    UF = 33504.30; 
 });
-
-// Función guardar la base de datos de forma local
-guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor)};
 
 // Recuperación de Bases de Datos de Entregable almacenados
 BD = JSON.parse(localStorage.getItem("bdEntregables"));
