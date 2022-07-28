@@ -16,7 +16,8 @@ let suma = 0;
 let bandera = 1;
 let bandera2 = 0;
 let idBD = 0;
-let UF = 0;
+let UF = 33504.30; //Se identifica caída del servidor proveedor del dato (28/07/22). Se coloca un valor referencial mientras se resuelve la situación
+guardarLocal("valorUF", UF);
 
 
 // Creación de constructor de Entregables
